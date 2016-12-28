@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MJSlideMenu" customModule="MJSlideMenu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="442"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qv3-NS-OqN">
+                    <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="ini-Ox-35e"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ngf-05-1Ov">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kex-AD-If5">
+                    <rect key="frame" x="0.0" y="50" width="361" height="392"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9ce-rD-jKQ">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kex-AD-If5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AKh-2q-gUj"/>
+                <constraint firstItem="qv3-NS-OqN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AzX-IS-ekx"/>
+                <constraint firstAttribute="bottom" secondItem="kex-AD-If5" secondAttribute="bottom" id="L4E-tp-c9T"/>
+                <constraint firstAttribute="trailing" secondItem="kex-AD-If5" secondAttribute="trailing" id="TY7-sb-4mN"/>
+                <constraint firstItem="kex-AD-If5" firstAttribute="top" secondItem="qv3-NS-OqN" secondAttribute="bottom" id="jl8-gW-kE1"/>
+                <constraint firstAttribute="trailing" secondItem="qv3-NS-OqN" secondAttribute="trailing" id="whU-Iv-cb7"/>
+                <constraint firstItem="qv3-NS-OqN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yTU-Eu-xy4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentCollectionView" destination="kex-AD-If5" id="Geh-6Z-Mwo"/>
+                <outlet property="menuCollectionView" destination="qv3-NS-OqN" id="jqL-K5-RCS"/>
+                <outlet property="menuHeightConstraint" destination="ini-Ox-35e" id="Wal-5G-9V6"/>
+            </connections>
+            <point key="canvasLocation" x="27.5" y="-59"/>
+        </view>
+    </objects>
+</document>
