@@ -33,10 +33,45 @@ public class MJSlideMenu: UIView {
     private var indexView: UIView?
     fileprivate var shouldUpdateIndexPercentage = true
     
-    public var indexViewColor: UIColor = .white
+    // MARK: - Customization properties
+    
     public var menuTextColorSelected: UIColor = .black
-    public var menuTextColor: UIColor = .black
+    public var menuTextColor: UIColor = .lightGray
     public var menuTextFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    
+    public var menuHeight: CGFloat {
+        get {
+            return menuHeightConstraint.constant
+        }
+        set {
+            menuHeightConstraint.constant = newValue
+            updateMenuCollectionView(forItemCount: segments.count)
+        }
+    }
+    
+    public var indexViewColor: UIColor = .black {
+        didSet {
+            addIndexView(segmentCount: segments.count)
+        }
+    }
+    
+    public var indexViewHeight = IndexViewHeight {
+        didSet {
+            addIndexView(segmentCount: segments.count)
+        }
+    }
+    
+    public var contentBackgroundColor: UIColor? {
+        didSet {
+            contentCollectionView.backgroundColor = contentBackgroundColor
+        }
+    }
+    
+    public var menuBackgroundColor: UIColor? {
+        didSet {
+            menuCollectionView.backgroundColor = menuBackgroundColor
+        }
+    }
     
     public var segments: [Segment] = [] {
         didSet {
@@ -52,6 +87,7 @@ public class MJSlideMenu: UIView {
             return nil
         }
         viewController.view.addSubview(slideMenu)
+        viewController.edgesForExtendedLayout = []
         slideMenu.addConstraints(toParentVC: viewController)
         return slideMenu
     }
@@ -110,19 +146,23 @@ public class MJSlideMenu: UIView {
         }
         let itemWidth = UIScreen.main.bounds.width / CGFloat(count)
         flowLayout.itemSize = CGSize(width: itemWidth,
-                                     height: DefaultMenuHeight)
-        
-        let newIndexView = createIndexView(withWidth: itemWidth)
+                                     height: menuHeight)
+        addIndexView(segmentCount: count)
+    }
+    
+    // MARK: - Menu index view
+    
+    private func addIndexView(segmentCount count: Int) {
+        let indexViewWidth = UIScreen.main.bounds.width / CGFloat(count)
+        let newIndexView = createIndexView(withWidth: indexViewWidth)
         self.indexView?.removeFromSuperview()
         self.indexView = newIndexView
         menuCollectionView.addSubview(newIndexView)
     }
     
-    // MARK: - Menu index view
-    
     private func createIndexView(withWidth width: CGFloat) -> UIView {
-        let viewFrame = CGRect(x: 0, y: DefaultMenuHeight - IndexViewHeight, width: width, height: IndexViewHeight)
-        let layerFrame = CGRect(x: 0, y: 0, width: width, height: IndexViewHeight)
+        let viewFrame = CGRect(x: 0, y: menuHeight - indexViewHeight, width: width, height: indexViewHeight)
+        let layerFrame = CGRect(x: 0, y: 0, width: width, height: indexViewHeight)
         let indexLayer = CALayer()
         indexLayer.frame = layerFrame
         indexLayer.backgroundColor = indexViewColor.cgColor
@@ -136,7 +176,7 @@ public class MJSlideMenu: UIView {
             return
         }
         UIView.animate(
-            withDuration: 0.2,
+            withDuration: 0.15,
             delay: 0,
             options: .curveEaseIn,
             animations: { [unowned self] in
@@ -249,11 +289,7 @@ extension MJSlideMenu: UICollectionViewDataSource {
 extension MJSlideMenu: UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.tag)
         let maxHorizontalOffset = scrollView.contentSize.width - scrollView.frame.width
-        guard maxHorizontalOffset > 0 else {
-            return
-        }
         let currentHorizontalOffset = scrollView.contentOffset.x
         let horizontalOffsetPercentage = currentHorizontalOffset / maxHorizontalOffset
         updateMenu(offsetPercentage: horizontalOffsetPercentage)

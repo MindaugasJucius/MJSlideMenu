@@ -9,6 +9,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         slideMenu = MJSlideMenu.create(withParentVC: self)
         slideMenu?.segments = createSegments()
+        slideMenu?.indexViewColor = .red
+        slideMenu?.menuHeight = 30
+        slideMenu?.indexViewHeight = 5
     }
 
     func createSegments() -> [Segment] {
