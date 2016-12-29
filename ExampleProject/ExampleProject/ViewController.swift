@@ -11,11 +11,11 @@ class ViewController: UIViewController {
         slideMenu?.segments = createSegments()
         slideMenu?.indexViewColor = .red
         slideMenu?.menuHeight = 30
-        slideMenu?.indexViewHeight = 5
+        slideMenu?.indexViewHeight = 3
     }
 
     func createSegments() -> [Segment] {
-        let tuples: [(String, UIColor)] = [("first", .blue), ("second", .yellow), ("third", .lightGray)]
+        let tuples: [(String, UIColor)] = [("Photos", .blue), ("Collections", .yellow), ("User", .lightGray)]
         return tuples.map { tuple in
             let view = UIView()
             view.backgroundColor = tuple.1

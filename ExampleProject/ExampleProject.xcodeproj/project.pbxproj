@@ -13,7 +13,21 @@
 		0326ED581E15333E00420F4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0326ED571E15333E00420F4C /* Assets.xcassets */; };
 		0326ED5B1E15333E00420F4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0326ED591E15333E00420F4C /* LaunchScreen.storyboard */; };
 		0326ED641E153A2000420F4C /* MJSlideMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0326ED631E153A2000420F4C /* MJSlideMenu.framework */; };
+		0326ED691E1571EA00420F4C /* MJSlideMenu.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0326ED681E1571EA00420F4C /* MJSlideMenu.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0326ED661E15713D00420F4C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0326ED691E1571EA00420F4C /* MJSlideMenu.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0326ED4D1E15333E00420F4C /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +38,7 @@
 		0326ED5A1E15333E00420F4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0326ED5C1E15333E00420F4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0326ED631E153A2000420F4C /* MJSlideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MJSlideMenu.framework; path = "../../../Library/Developer/Xcode/DerivedData/MJSlideMenu-gvzpqmxpwqldwggnnqnhxajkrpda/Build/Products/Debug-iphonesimulator/MJSlideMenu.framework"; sourceTree = "<group>"; };
+		0326ED681E1571EA00420F4C /* MJSlideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MJSlideMenu.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +56,7 @@
 		0326ED441E15333E00420F4C = {
 			isa = PBXGroup;
 			children = (
+				0326ED681E1571EA00420F4C /* MJSlideMenu.framework */,
 				0326ED4F1E15333E00420F4C /* ExampleProject */,
 				0326ED4E1E15333E00420F4C /* Products */,
 				0326ED621E153A2000420F4C /* Frameworks */,
@@ -86,6 +102,7 @@
 				0326ED491E15333E00420F4C /* Sources */,
 				0326ED4A1E15333E00420F4C /* Frameworks */,
 				0326ED4B1E15333E00420F4C /* Resources */,
+				0326ED661E15713D00420F4C /* CopyFiles */,
 			);
 			buildRules = (
 			);

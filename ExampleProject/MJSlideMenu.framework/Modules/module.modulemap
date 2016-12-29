@@ -1,0 +1,10 @@
+framework module MJSlideMenu {
+  umbrella header "MJSlideMenu.h"
+
+  export *
+  module * { export * }
+}
+
+module MJSlideMenu.Swift {
+    header "MJSlideMenu-Swift.h"
+}
