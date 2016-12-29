@@ -1,11 +1,13 @@
 import UIKit
 
+fileprivate let BundleIdentifier = "min.apps.MJSlideMenu"
+
 fileprivate let DefaultMenuHeight: CGFloat = 35
 fileprivate let IndexViewHeight: CGFloat = 2
 
 public struct Segment {
-    let title: String
-    let contentView: UIView
+    public let title: String
+    public let contentView: UIView
 }
 
 fileprivate enum CollectionViewTags: Int {
@@ -39,15 +41,18 @@ public class MJSlideMenu: UIView {
     
     // MARK: - Lifecycle
     
-    public static func create(withParentView view: UIView) -> MJSlideMenu {
-        let segmentedMenu = loadSegmentedMenu()
-        view.addSubview(segmentedMenu)
-        segmentedMenu.addConstraints(toParent: view)
-        return segmentedMenu
+    public static func create(withParentView view: UIView) -> MJSlideMenu? {
+        guard let slideMenu = loadSlideMenu() else {
+            return nil
+        }
+        view.addSubview(slideMenu)
+        slideMenu.addConstraints(toParent: view)
+        return slideMenu
     }
     
-    private static func loadSegmentedMenu() -> MJSlideMenu {
-        return Bundle.main.loadNibNamed(String(describing: MJSlideMenu.self), owner: nil, options: nil)!.first as! MJSlideMenu
+    private static func loadSlideMenu() -> MJSlideMenu? {
+        let bundle = Bundle.init(identifier: BundleIdentifier)
+        return bundle?.loadNibNamed(String(describing: MJSlideMenu.self), owner: nil, options: nil)?.first as? MJSlideMenu
     }
     
     public override func awakeFromNib() {
