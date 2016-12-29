@@ -107,7 +107,7 @@ public class MJSlideMenu: UIView {
             return
         }
         UIView.animate(
-            withDuration: 0.1,
+            withDuration: 0.2,
             delay: 0,
             options: .curveEaseIn,
             animations: { [unowned self] in
