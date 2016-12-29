@@ -3,10 +3,21 @@ import MJSlideMenu
 
 class ViewController: UIViewController {
 
+    private var slideMenu: MJSlideMenu?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let slideMenu = MJSlideMenu.create(withParentView: view)
+        slideMenu = MJSlideMenu.create(withParentVC: self)
+        slideMenu?.segments = createSegments()
     }
 
+    func createSegments() -> [Segment] {
+        let tuples: [(String, UIColor)] = [("first", .blue), ("second", .yellow), ("third", .lightGray)]
+        return tuples.map { tuple in
+            let view = UIView()
+            view.backgroundColor = tuple.1
+            return Segment(title: String(describing: tuple.0), contentView: view)
+        }
+    }
+    
 }
-

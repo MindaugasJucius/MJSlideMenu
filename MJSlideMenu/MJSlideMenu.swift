@@ -6,6 +6,12 @@ fileprivate let DefaultMenuHeight: CGFloat = 35
 fileprivate let IndexViewHeight: CGFloat = 2
 
 public struct Segment {
+    
+    public init(title: String, contentView: UIView) {
+        self.title = title
+        self.contentView = contentView
+    }
+    
     public let title: String
     public let contentView: UIView
 }
@@ -40,6 +46,15 @@ public class MJSlideMenu: UIView {
     }
     
     // MARK: - Lifecycle
+    
+    public static func create(withParentVC viewController: UIViewController) -> MJSlideMenu? {
+        guard let slideMenu = loadSlideMenu() else {
+            return nil
+        }
+        viewController.view.addSubview(slideMenu)
+        slideMenu.addConstraints(toParentVC: viewController)
+        return slideMenu
+    }
     
     public static func create(withParentView view: UIView) -> MJSlideMenu? {
         guard let slideMenu = loadSlideMenu() else {
@@ -78,6 +93,15 @@ public class MJSlideMenu: UIView {
         bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+    
+    private func addConstraints(toParentVC viewController: UIViewController) {
+        menuHeightConstraint.constant = DefaultMenuHeight
+        topAnchor.constraint(equalTo: viewController.topLayoutGuide.bottomAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: viewController.bottomLayoutGuide.topAnchor).isActive = true
+        leftAnchor.constraint(equalTo: viewController.view.leftAnchor).isActive = true
+        rightAnchor.constraint(equalTo: viewController.view.rightAnchor).isActive = true
+        
     }
     
     private func updateMenuCollectionView(forItemCount count: Int) {
@@ -154,7 +178,8 @@ public class MJSlideMenu: UIView {
     
     private func configureMenuCollectionView() {
         menuCollectionView.backgroundColor = .lightText
-        let cellNib = UINib(nibName: String(describing: TitleCollectionViewCell.self), bundle: nil)
+        
+        let cellNib = UINib(nibName: String(describing: TitleCollectionViewCell.self), bundle: Bundle.init(identifier: BundleIdentifier))
         menuCollectionView.register(cellNib, forCellWithReuseIdentifier: MenuCellReuseID)
         menuCollectionView.dataSource = self
         menuCollectionView.delegate = self
@@ -224,7 +249,11 @@ extension MJSlideMenu: UICollectionViewDataSource {
 extension MJSlideMenu: UIScrollViewDelegate {
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.tag)
         let maxHorizontalOffset = scrollView.contentSize.width - scrollView.frame.width
+        guard maxHorizontalOffset > 0 else {
+            return
+        }
         let currentHorizontalOffset = scrollView.contentOffset.x
         let horizontalOffsetPercentage = currentHorizontalOffset / maxHorizontalOffset
         updateMenu(offsetPercentage: horizontalOffsetPercentage)
