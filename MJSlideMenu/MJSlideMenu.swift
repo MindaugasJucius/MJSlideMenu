@@ -80,6 +80,17 @@ public class MJSlideMenu: UIView {
         }
     }
     
+    // MARK: - State properties
+    
+    public var currentlyVisibleSegment: Segment? {
+        get {
+            guard let visibleRowIndex = contentCollectionView.indexPathsForVisibleItems.first?.row else {
+                return nil
+            }
+            return segments[visibleRowIndex]
+        }
+    }
+    
     // MARK: - Lifecycle
     
     public static func create(withParentVC viewController: UIViewController) -> MJSlideMenu? {

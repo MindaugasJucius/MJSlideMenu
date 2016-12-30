@@ -9,13 +9,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         slideMenu = MJSlideMenu.create(withParentVC: self)
         slideMenu?.segments = createSegments()
-        slideMenu?.indexViewColor = .red
+        slideMenu?.indexViewColor = .black
         slideMenu?.menuHeight = 30
-        slideMenu?.indexViewHeight = 3
+        slideMenu?.indexViewHeight = 2
     }
 
     func createSegments() -> [Segment] {
-        let tuples: [(String, UIColor)] = [("Photos", .blue), ("Collections", .yellow), ("User", .lightGray)]
+        let tuples: [(String, UIColor)] = [("Photos", .darkGray), ("Collections", .gray), ("User", .lightGray)]
         return tuples.map { tuple in
             let view = UIView()
             view.backgroundColor = tuple.1
